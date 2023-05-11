@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import Balance from "../../components/balance/Balance";
 import Movements from "../../components/movements/Movements";
 import Actions from "../../components/Actions/Actions";
+import { MotiView, MotiText } from "moti";
 
 const list = [
     {

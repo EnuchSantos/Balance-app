@@ -1,3 +1,4 @@
+import { AnimatePresence, MotiText } from "moti";
 import React, { useState } from "react";
 import {
     View,
@@ -15,11 +16,25 @@ const Movements = ({ data }) => {
                 <Text style={styles.label}>{data.label}</Text>
                 {
                     showValue ?
-                        <Text
-                            style={data.type == 1 ? styles.value : styles.expenses}>
-                            {data.type == 1 ? `R$ ${data.value}` : `-R$ ${data.value}`}
-                        </Text> :
-                        <Text style={styles.skeleton} />
+                        <AnimatePresence exitBeforeEnter>
+                            <MotiText
+                                style={data.type == 1 ? styles.value : styles.expenses}
+                                from={{
+                                    translateX: 100,
+                                }}
+                                animate={{
+                                    translateX: 0,
+                                }}
+                                transition={{
+                                    type: 'timing',
+                                    duration: 500,
+                                }}>
+                                {data.type == 1 ? `R$ ${data.value}` : `-R$ ${data.value}`}
+                            </MotiText>
+                        </AnimatePresence> :
+                        <AnimatePresence exitBeforeEnter>
+                            <Text style={styles.skeleton} />
+                        </AnimatePresence>
                 }
 
             </View>
@@ -31,9 +46,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginBottom: 12,
+        marginBottom: 5,
         marginTop: 5,
-        padding: 10,
+        padding: 12,
         borderRadius: 10,
     },
     content: {
