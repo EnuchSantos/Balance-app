@@ -27,7 +27,7 @@ const Header = ({ name }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#8000ff',
+        backgroundColor: '#00CED1',
         flexDirection: 'row',
         paddingTop: statusBarHeight,
         paddingBottom: 44,

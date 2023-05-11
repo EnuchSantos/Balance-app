@@ -1,11 +1,49 @@
-import { StyleSheet, Text, View } from "react-native"
+import { FlatList, StyleSheet, Text, View } from "react-native"
 import Header from "../../components/Header/Header";
+import Balance from "../../components/balance/Balance";
+import Movements from "../../components/movements/Movements";
+import Actions from "../../components/Actions/Actions";
+
+const list = [
+    {
+        id: 1,
+        label: 'Salário',
+        value: '15.000',
+        data: '17/08/2023',
+        type: 1
+    },
+    {
+        id: 2,
+        label: 'Água',
+        value: '2.000',
+        data: '17/08/2023',
+        type: 0
+    },
+    {
+        id: 3,
+        label: 'Pix para Erika',
+        value: '3.000',
+        data: '17/08/2023',
+        type: 0
+    },
+]
 
 const Home = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Header name="Enuch Santos" />
-            <Text>Home to my app</Text>
+            <Balance saldo='20.567,98' gastos='-789' />
+            <Actions />
+            <View style={styles.content}>
+                <Text style={styles.title}>Últimas movimentações</Text>
+            </View>
+            <FlatList
+                style={styles.list}
+                data={list}
+                keyExtractor={(item) => String(item.id)}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => <Movements data={item} />}
+            />
         </View>
     )
 }
@@ -13,7 +51,20 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#D3D3D3',
+    },
+    content: {
+        alignItems: 'center',
+        marginTop: 6,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginStart: 16,
+    },
+    list: {
+        marginStart: 14,
+        marginEnd: 14,
     },
 })
 
